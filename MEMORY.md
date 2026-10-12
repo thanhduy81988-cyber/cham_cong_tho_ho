@@ -12,6 +12,7 @@ Ghi ngắn gọn việc đã làm, quyết định đã chốt và việc còn l
 - Anh cai chấm cho cả đội trên một điện thoại.
 - Chấm theo ngày: cả ngày / nửa ngày / nghỉ, cộng giờ tăng ca.
 - Web app tĩnh, dữ liệu lưu trong điện thoại, không máy chủ (chủ dự án chọn).
+- Chủ dự án gửi ảnh mẫu một app chấm công khác (thẻ công trình, thợ tự chấm, QR); đã chọn **giữ nguyên giao diện hiện tại**, ảnh chỉ để tham khảo.
 
 **Còn lại**
 - Repo chưa có nhánh `main` nên chưa mở được PR – chờ chủ dự án đồng ý tạo `main`.
