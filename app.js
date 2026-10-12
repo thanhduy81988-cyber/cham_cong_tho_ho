@@ -183,10 +183,11 @@
     const d = parse(state.date);
 
     if (!workers.length || !sites.length) {
-      view.innerHTML = `<div class="card empty">
+      view.innerHTML = `${installHint()}<div class="card empty">
         <p>Chưa có ${!workers.length ? 'thợ' : ''}${!workers.length && !sites.length ? ' và ' : ''}${!sites.length ? 'công trình' : ''}.</p>
         <button class="btn primary block" id="goManage">Vào Quản lý để thêm</button></div>`;
       $('#goManage').onclick = () => go('quanly');
+      if ($('#hideInstall')) $('#hideInstall').onclick = () => { db.ui.hideInstall = true; save(); render(); };
       return;
     }
 
@@ -215,7 +216,7 @@
       })
       .join('');
 
-    view.innerHTML = `
+    view.innerHTML = `${installHint()}
       <div class="card stack">
         <div class="datebar">
           <button class="btn" id="prev" aria-label="Hôm trước">‹</button>
@@ -233,6 +234,7 @@
       </div>
       <div class="card summary"><span>Tổng công hôm nay</span><span>${num(total)} công</span></div>`;
 
+    if ($('#hideInstall')) $('#hideInstall').onclick = () => { db.ui.hideInstall = true; save(); render(); };
     $('#prev').onclick = () => { state.date = addDays(state.date, -1); render(); };
     $('#next').onclick = () => { state.date = addDays(state.date, 1); render(); };
     $('#pick').onchange = (e) => { if (e.target.value) { state.date = e.target.value; render(); } };
@@ -492,7 +494,24 @@
     download(blob, `bang-luong_${from}_${to}.xlsx`);
   }
 
+  const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isStandalone = () => window.navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
+
   function download(blob, filename) {
+    // iPhone: mở bảng Chia sẻ để lưu vào Tệp hoặc gửi Zalo; tải kiểu thường hay bị lỗi khi chạy từ màn hình chính.
+    if (isIOS && navigator.canShare) {
+      const file = new File([blob], filename, { type: blob.type });
+      if (navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: filename }).catch((e) => {
+          if (e.name !== 'AbortError') saveLink(blob, filename);
+        });
+        return;
+      }
+    }
+    saveLink(blob, filename);
+  }
+
+  function saveLink(blob, filename) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -500,8 +519,17 @@
     document.body.appendChild(a);
     a.click();
     a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
     toast('Đã tải ' + filename);
+  }
+
+  // iPhone tự xóa dữ liệu của trang web không mở trong 7 ngày, trừ khi đã thêm vào màn hình chính.
+  function installHint() {
+    if (!isIOS || isStandalone() || db.ui.hideInstall) return '';
+    return `<div class="card install" id="install">
+      <p><b>Cài app lên màn hình chính</b> để mở nhanh và <b>không bị mất dữ liệu</b>:</p>
+      <p>1. Bấm nút <b>Chia sẻ</b> <span aria-hidden="true">⬆️</span> ở thanh dưới Safari<br>2. Chọn <b>Thêm vào MH chính</b></p>
+      <button class="btn block" id="hideInstall">Đã hiểu</button></div>`;
   }
 
   // ---------- Màn hình: Quản lý ----------
@@ -637,6 +665,8 @@
   document.querySelectorAll('.tabs button').forEach((b) => (b.onclick = () => go(b.dataset.tab)));
 
   render();
+
+  if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     navigator.serviceWorker.register('sw.js').catch(() => {});

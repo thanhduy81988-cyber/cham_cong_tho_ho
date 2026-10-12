@@ -13,7 +13,9 @@
   --radius: 14px;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+button, .btn, select, label { touch-action: manipulation; }
+input[type=date] { -webkit-appearance: none; appearance: none; min-height: 52px; display: block; }
 
 html { font-size: 19px; -webkit-text-size-adjust: 100%; }
 
@@ -156,3 +158,6 @@ dialog .actions .btn { flex: 1; }
 .payrow .net.neg span, .payrow .neg { color: var(--danger); }
 .payrow.total { border-top: 3px solid var(--text); margin-top: 4px; }
 .chips button { white-space: nowrap; font-size: .95rem; padding: 0 8px; }
+
+.install { background: #fff7ed; border: 1.5px solid #fdba74; }
+.install p { margin: 0 0 10px; }

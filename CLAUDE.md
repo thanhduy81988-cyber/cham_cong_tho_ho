@@ -20,7 +20,13 @@ Giao diện chữ to, nút to, ít bấm.
 | `app.js` | Toàn bộ logic: dữ liệu, 4 màn hình, tính lương, xuất Excel |
 | `xlsx.js` | Tự tạo file `.xlsx` (zip không nén + XML), không cần thư viện |
 | `sw.js` | Lưu sẵn file để chạy offline. **Đổi `CACHE` khi thêm/đổi tên file** |
-| `manifest.webmanifest`, `icon.svg` | Cài như app |
+| `manifest.webmanifest`, `icon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` | Cài như app (iPhone cần icon PNG 180px) |
+
+## iPhone (ưu tiên số 1)
+- Chạy bằng Safari, cài bằng **Chia sẻ → Thêm vào MH chính**. App hiện hướng dẫn này khi mở trong Safari (ẩn bằng `ui.hideInstall`).
+- Safari xóa `localStorage` của trang không mở trong 7 ngày, **trừ khi đã thêm vào màn hình chính**; app gọi thêm `navigator.storage.persist()`.
+- Xuất Excel / sao lưu trên iPhone dùng `navigator.share` (bảng Chia sẻ: Lưu vào Tệp, Zalo...), máy khác tải file như thường.
+- Chữ trong ô nhập ≥ 16px để Safari không tự phóng to.
 
 ## Cấu trúc dữ liệu (`localStorage` khóa `chamcong_thoho_v1`)
 ```js
@@ -30,7 +36,7 @@ Giao diện chữ to, nút to, ít bấm.
   sites:   [{ id, name, address, active }],
   att:     { "YYYY-MM-DD|workerId": { date, workerId, siteId, day /*1 | 0.5 | 0*/, ot /*giờ*/ } },
   adv:     [{ id, workerId, amount, date, note }],   // tiền ứng, không gắn công trình
-  ui:      { siteId }                                 // công trình đang chọn
+  ui:      { siteId, hideInstall }                    // công trình đang chọn, đã ẩn hướng dẫn cài
 }
 ```
 - Mỗi thợ mỗi ngày chỉ có **một** bản ghi chấm công (một công trình).

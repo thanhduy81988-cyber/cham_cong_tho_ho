@@ -22,4 +22,10 @@ Mở `index.html` bằng trình duyệt, hoặc chạy một web server tĩnh b�
 python3 -m http.server 8000
 ```
 
-Để dùng trên điện thoại, có thể bật **GitHub Pages** cho repo này (Settings → Pages → chọn nhánh) rồi mở đường link trên điện thoại.
+## Dùng trên iPhone
+1. Bật **GitHub Pages** cho repo (Settings → Pages → Deploy from a branch → `main`, thư mục `/`).
+2. Mở link `https://thanhduy81988-cyber.github.io/cham_cong_tho_ho/` bằng **Safari**.
+3. Bấm **Chia sẻ** → **Thêm vào MH chính**. Từ đó mở app bằng biểu tượng trên màn hình, chạy cả khi mất mạng.
+
+Nên mở từ màn hình chính: nếu chỉ mở trong Safari mà 7 ngày không dùng, iPhone có thể xóa dữ liệu.
+File Excel và file sao lưu trên iPhone mở bằng bảng Chia sẻ: chọn *Lưu vào Tệp* hoặc gửi qua Zalo.
