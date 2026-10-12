@@ -2,7 +2,22 @@
 
 Ghi ngắn gọn việc đã làm, quyết định đã chốt và việc còn lại. Mới nhất ở trên cùng.
 
-## 12/10/2026
+## 12/10/2026 – Bản 2
+**Đã làm**
+- Làm lại toàn bộ app theo ảnh app mẫu chủ dự án gửi, đồ họa mới màu xanh: trang chủ thẻ công việc + âm lịch, chi tiết công việc, thẻ từng thợ, lịch tháng, ứng / tăng ca / phụ cấp / trừ tiền / thanh toán, bảng lương tháng + nút Thanh toán lương, phiếu lương, lợi nhuận, quản lý nhân viên (Đang làm / Đã nghỉ), xuất Excel theo tháng hoặc khoảng ngày.
+- Dữ liệu mới khóa `chamcong_thoho_v2`; dữ liệu bản 1 tự chuyển sang, file sao lưu bản 1 vẫn khôi phục được.
+- Thêm `lunar.js` (âm lịch), icon mới màu xanh, `sw.js` lên `chamcong-v3`.
+- Chạy thử trên Chromium giả lập iPhone 13: số tiền khớp tính tay, file Excel mở được, không lỗi console.
+
+**Quyết định đã chốt**
+- Chủ dự án đổi ý: **làm theo ảnh mẫu**, sửa đồ họa cho đẹp (thay cho "giữ nguyên giao diện").
+- Vẫn lưu trong điện thoại, nên bỏ: thợ tự chấm, vào nhóm bằng QR, trợ lý, thông báo.
+
+**Còn lại**
+- Chủ dự án duyệt PR #1; thử trên iPhone thật (cần bật GitHub Pages).
+- Chưa rõ có cần app trên App Store không (đã hỏi, chưa trả lời).
+
+## 12/10/2026 – Bản 1
 **Đã làm**
 - Ưu tiên iPhone (chủ dự án yêu cầu): icon PNG cho màn hình chính, thẻ meta cho Safari, hướng dẫn "Thêm vào MH chính", xin giữ dữ liệu lâu dài, xuất Excel qua bảng Chia sẻ. Đã thử bằng Chromium giả lập iPhone 13; chưa thử trên Safari thật.
 - Tạo nhánh `main` (chỉ có README) và mở PR nháp #1.

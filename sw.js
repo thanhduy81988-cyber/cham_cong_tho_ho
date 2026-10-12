@@ -1,6 +1,6 @@
 // Lưu sẵn app trong máy để mở được cả khi mất mạng ở công trường.
-const CACHE = 'chamcong-v2';
-const FILES = ['./', 'index.html', 'style.css', 'app.js', 'xlsx.js', 'manifest.webmanifest', 'icon.svg', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png'];
+const CACHE = 'chamcong-v3';
+const FILES = ['./', 'index.html', 'style.css', 'app.js', 'xlsx.js', 'lunar.js', 'manifest.webmanifest', 'icon.svg', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting()));

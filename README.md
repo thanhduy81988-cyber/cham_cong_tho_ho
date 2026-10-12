@@ -3,11 +3,13 @@
 App web chạy trên điện thoại để anh cai / trưởng nhóm chấm công cho cả đội ở công trường.
 
 ## Làm được gì
-- **Chấm công**: chọn ngày và công trình, bấm *Cả ngày / Nửa ngày / Nghỉ* cho từng thợ, nút **+ / −** để ghi giờ tăng ca (mỗi lần 0,5 giờ). Nút *Cả đội đi làm* chấm cả ngày cho mọi thợ chưa chấm. Bấm lại nút đang chọn để bỏ chấm.
-- **Ứng tiền**: ghi số tiền thợ ứng, có nút nhanh 200 nghìn / 500 nghìn / 1 triệu.
-- **Bảng lương**: theo tuần này, tuần trước, tháng này, tháng trước hoặc tự chọn ngày; lọc theo công trình. Tiền công = số công × đơn giá + giờ tăng ca × tiền tăng ca/giờ, trừ tiền ứng ra số còn phải trả. Bấm vào tên thợ để xem từng ngày.
-- **Xuất Excel** (.xlsx) gồm 3 trang: Bảng lương, Bảng công (theo từng ngày), Tiền ứng.
-- **Quản lý**: danh sách thợ (tiền công/ngày, tiền tăng ca/giờ – để trống thì tính bằng tiền ngày ÷ 8), nhiều công trình, sao lưu / khôi phục dữ liệu bằng file.
+- **Trang chủ**: mỗi công việc (công trình) một thẻ: ngày chốt lương, số thợ, tiền đã ứng tháng này, nút *Chấm công* và *Xem chi tiết*. Hiện cả ngày âm lịch.
+- **Chấm công**: thẻ từng thợ với nút *1/2 công*, *Chấm công* (cả ngày) và *Khác* (nghỉ có lương, bỏ chấm). Nút cam chấm cả đội một lần.
+- **Từng thợ**: ứng lương, tăng ca, phụ cấp, trừ tiền, thanh toán; lịch tháng có đánh dấu 1 / ½ / P; phiếu lương.
+- **Bảng lương tháng**: tổng lương, đã ứng, chưa thanh toán; nút *Thanh toán lương* ghi đã trả cho cả đội.
+- **Tổng quan & Lợi nhuận**: theo tháng hoặc khoảng ngày; ghi tiền chủ nhà trả và chi khác để xem lãi.
+- **Xuất Excel** (.xlsx): bảng chấm công, bảng lương, ứng / tăng ca / phụ cấp, phiếu lương từng thợ.
+- **Nhân viên**: lương riêng theo từng công việc, tab Đang làm / Đã nghỉ. Sao lưu / khôi phục bằng file ở mục Cá nhân.
 
 ## Lưu dữ liệu
 Không cần máy chủ: mọi dữ liệu nằm trong trình duyệt của điện thoại (localStorage). Vì vậy:
